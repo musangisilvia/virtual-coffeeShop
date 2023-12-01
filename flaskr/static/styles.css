@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+/* Reset browser default margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+/*Font for the body*/
+body {
+    font-family: 'Lato', sans-serif;
+    background: url('../images/coffe1.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* header h1 */
+header h1 {
+    font-size: 70px;
+    font-family: 'Merriweather', cursive;
+    text-align: center;
+    margin: 10px 20px;
+    color: white;
+}
+
+/* main */
+main {
+    background-color: white;
+    width: 40%;
+    height: 300px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 10px;
+}
+
+/* main h1 */
+main h1 {
+    text-align: center;
+    font-size: 25px;
+}
+
+/* main form */
+.signin_form {
+    margin: 7% 20%;
+    padding: 10px;
+}
+
+form input {
+    width: 80%;
+    height: 20px;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid #696969;
+}
+
+form button {
+    width: 30%;
+    height: 30px;
+    color: white;
+    background-color: #78bdf2;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/* main p */
+p {
+    font-size: xx-small;
+    color: #696969;
+    text-align: center;
+}
+
+/* footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
