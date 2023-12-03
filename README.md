@@ -39,6 +39,11 @@ This is a simple web application that allows users to register, log in, create p
     ```bash
     python -m venv venv
     ```
+    or 
+
+    ```powershell
+    py -3 -m venv venv
+    ```
 
 2. Activate the virtual environment:
 
