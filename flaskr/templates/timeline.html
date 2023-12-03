@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline</title>
+    <title>Timeline {{ current_user.username }}</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="../css/timeline-styles.css">
+    <link rel="stylesheet" href="../static/timeline-styles.css">
 </head>
 <body>
     <header>
-        <h1>Username</h1>
+        <h1>{{ current_user.username }}</h1>
         <nav>
-            <a href="timeline.html">Home</a>
+            <a href="{{ url_for('timeline') }}">Home</a>
             <a href="profile.html">Profile</a>
-            <a href="../index.html">Log out</a>
+            <a href="{{ url_for('logout') }}">Log out</a>
         </nav>
     </header>
     <main>
         <section class="create_post">
-            <a href="create-post.html">Create Post</a>
+            <a href="{{ url_for('create_post') }}">Create Post</a>
         </section>
         <section class="recent_posts">
-            <h3>Cappucino Classic</h3>
-            <h4>Username</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa iusto deleniti,
-                accusantium tempore ut natus commodi voluptatibus esse ipsam alias, ullam magnam?
-                Fuga voluptatibus molestiae repudiandae eos possimus! Ducimus, quia.</p>
-            <i>Like</i> <i>Dislike</i>
+            <h1>All Posts</h1>
+            {% for post in all_posts %}
+                <h3>{{ post.user.username }} - {{ post.created_at }}</h3>
+                <p>{{ post.content }}</p>
+                <a href="#">Like</a> <a href="#">Dislike</a> <br>
+            {% endfor %}
         </section>
     </main>
 </body>
