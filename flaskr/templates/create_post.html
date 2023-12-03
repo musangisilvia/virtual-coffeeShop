@@ -1,0 +1,23 @@
+<!-- create_post.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+</head>
+<body>
+
+    <h1>Create a New Post</h1>
+
+    <form action="{{ url_for('create_post') }}" method="post">
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+
+        <input type="submit" value="Create Post">
+    </form>
+
+</body>
+</html>
