@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 from flask_login import login_user, logout_user, current_user, login_required
-from flaskr.models import db, Users
+from flaskr.models import db, Users, Posts
 from flaskr.config import Config
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
@@ -9,6 +9,7 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 
 app.config.from_object(Config)
+app.secret_key = app.config['SECRET_KEY']
 
 # init db
 db.init_app(app)
@@ -24,16 +25,12 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return Users.query.get(int(user_id))
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
 @app.route('/authenticate', methods=['POST'])
 def authenticate():
     if request.method == 'POST':
         # Implement user authentication logic here and retrieve the user object
         user = Users.query.filter_by(username=request.form['username']).first()
-        if user and Users.check_password(request.form['password']):
+        if user and user.check_password(request.form['password']):
             login_user(user)
             return redirect(url_for('timeline'))
         else:
@@ -47,7 +44,7 @@ def authenticate():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('authenticate'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -67,7 +64,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        return redirect(url_for('login'))
+        return redirect(url_for('authenticate'))
 
     return render_template('register.html')
 
@@ -75,35 +72,19 @@ def register():
 @app.route('/timeline')
 @login_required
 def timeline():
-    return render_template('timeline.html')
+    all_posts = Posts.get_all_posts()
 
-@app.route('/create_post')
+    return render_template('timeline.html', all_posts=all_posts)
+
+@app.route('/create_post', methods=['GET', 'POST'])
 @login_required
 def create_post():
     if request.method == 'POST':
-        username = request.form['username']
-        
+        content = request.form['content']
+        new_post = Posts(user_id=current_user.id, content=content)
+        db.session.add(new_post)
+        db.session.commit()
 
-# @app.route('/test-db-connection')
-# def test_db_connection():
-#     try:
-#         # Replace the values below with your actual database credentials
-#         connection = mysql.connector.connect(
-#             # :3306/VirtualCoffee
-#             host="database-1.creqgg4niwd7.eu-north-1.rds.amazonaws.com",
-#             user="admin",
-#             password="8QE1Oh8j9mPoruRmGtsw",
-#             database="VirtualCoffee"
-#         )
-
-#         cursor = connection.cursor()
-#         cursor.execute("SELECT VERSION()")
-#         result = cursor.fetchone()
-
-#         connection.close()
-
-#         return jsonify({"status": "success", "result": result[0]}), 200
-#     except Exception as e:
-#         return jsonify({"status": "error", "message": str(e)}), 500
-
+        return redirect(url_for('timeline'))
+    return render_template('create_post.html')
 
