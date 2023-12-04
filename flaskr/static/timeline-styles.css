@@ -1,4 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&family=Nova+Square&display=swap');
 * {
     margin: 0;
     padding: 0;
 }
+
+header {
+    background-color: #100801;
+    color: beige;
+    height: 60px;
+}
+
+header h1 {
+    padding: 10px;
+    margin-left: 10%;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 13px 20px 0 20px;
+}
+
+nav a {
+    color: beige;
+    margin-left: 65px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Nova Square', sans-serif;
+    font-weight: lighter;
+}
+
+nav a span.logout {
+    padding-top: 20px;
+}
+
+.create_post {
+    margin: 2% 25%;
+    padding: 5px;
+    text-align: center;
+}
+
+.create_post a {
+    display: block;
+    padding: 5px;
+    border: 1px solid #100801;
+    border-radius: 20px;
+    color: #100801;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.create_post a:hover {
+    background-color: #100801;
+    color: beige;
+}
+
+.recent_posts {
+    width: 70%;
+    margin: 0 15%;
+}
+
+.recent_posts h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4em;
+    text-align: center;
+}
+
+div.individual_post {
+    width: 70%;
+    padding: 30px;
+    margin: 3% 15%;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    transition: all .3s ease-in-out;
+    border-radius: 25px;
+}
+
+div.individual_post h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: large;
+    text-transform: uppercase;
+}
+
+div.individual_post h3 span.time {
+    float: right;
+    font-size: small;
+}
+
+div.individual_post p {
+    clear: both;
+    padding: 25px;
+    font-size: 20px;
+    font-family: 'Nova Square', sans-serif;
+}
+
+div.individual_post a {
+    text-decoration: none;
+    color: #100801;
+    margin-top: 5%;
+    padding: 10px;
+}
+
