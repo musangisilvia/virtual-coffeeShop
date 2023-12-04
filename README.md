@@ -65,13 +65,28 @@ This is a simple web application that allows users to register, log in, create p
     pip install -r requirements.txt
     ```
 4. Create a '**config.py**' file that will contain your app secret key, db credentials and any other secret the app uses. Be sure to create the database and all necessary credentials prior and test connectivity.
-Schema is defined in the schema.sql file. Once you have set this up, you can import it into the 
-    ```flaskr/__init__.py and use it.```
+Schema is defined in the schema.sql file.
 
 5. Run the application:
 
+- On the terminal
+
     ```bash
     flask run
+    ```
+
+- As a containerized application
+> At the root directory , there is a Dockerfile. Run the command below in the root directory (where app.py, Dockerfile and requirements.txt are)
+    ```
+        docker build -t virtual-coffeeshop .
+    ```
+> Once image has been built successfully, you can start a container interactively or detached using either of the commands below respectively.
+    ```
+        docker run --name virtual-coffee -p 5000:5000 virtual-coffeeshop
+    ```
+    or 
+    ```
+        docker run -d --name virtual-coffee -p 5000:5000 virtual-coffeeshop
     ```
 
    The application will be accessible at `http://127.0.0.1:5000/` in your web browser.
