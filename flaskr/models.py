@@ -1,7 +1,7 @@
 # models.py
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.functions import func, current_timestamp
-from sqlalchemy import ForeignKey
+# from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from flask_bcrypt import Bcrypt
@@ -45,5 +45,5 @@ class Posts(db.Model):
     
     def get_all_posts():
          all_posts = Posts.query.order_by(Posts.created_at.desc()).all()
-         print("=========\n",all_posts)
+     #     print("=========\n",all_posts)
          return all_posts

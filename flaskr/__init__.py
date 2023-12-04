@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
 from flaskr.models import db, Users, Posts
 from flaskr.config import Config
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
-
 
 app = Flask(__name__)
 
@@ -25,7 +24,7 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return Users.query.get(int(user_id))
 
-@app.route('/authenticate', methods=['POST'])
+@app.route('/authenticate', methods=['GET', 'POST'])
 def authenticate():
     if request.method == 'POST':
         # Implement user authentication logic here and retrieve the user object
@@ -87,4 +86,3 @@ def create_post():
 
         return redirect(url_for('timeline'))
     return render_template('create_post.html')
-
