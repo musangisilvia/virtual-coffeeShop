@@ -6,18 +6,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
+    <!-- css -->
+    <link rel="stylesheet" href="../static/timeline-styles.css">
+    
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@28,400,0,0" />
+
 </head>
 <body>
+    <header>
+        <h1><span class="material-symbols-outlined">
+            coffee_maker
+            </span>{{ current_user.username }}</h1>
+        <nav>
+            <a href="{{ url_for('timeline') }}">Home</a>
+            <a href="profile.html">Profile</a>
+            <a href="{{ url_for('logout') }}">Sign Out</a>
+        </nav>
+    </header>
 
-    <h1>Create a New Post</h1>
+    <main>
+        <h1>Create a New Post</h1>
 
-    <form action="{{ url_for('create_post') }}" method="post">
+        <form action="{{ url_for('create_post') }}" method="post">
 
-        <label for="content">Content:</label><br>
-        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
-
-        <input type="submit" value="Create Post">
-    </form>
-
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+    
+            <input type="submit" value="Create Post">
+        </form>
+    </main>
 </body>
 </html>
