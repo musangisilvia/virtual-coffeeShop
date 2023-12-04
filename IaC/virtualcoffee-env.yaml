@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an EC2 instance with a Linux-based OS, SSH access, and a web server.
+
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-xxxxxxxxxxxxxxxxx  
+      InstanceType: t2.micro
+      KeyName: virtualcoffee-key 
+      UserData:
+        Fn::Base64: |
+          #cloud-config
+          packages:
+            - nginx  # Install Nginx as the web server
+          runcmd:
+            - systemctl start nginx
+            - systemctl enable nginx
+
+      SecurityGroups:
+        - Ref: Virtualcoffee-SecurityGroup
+
+  Virtualcoffee-SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH and HTTP traffic
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22  # SSH port
+          ToPort: 22
+          CidrIp: 0.0.0.0/0  # Allow SSH from any IP
+        - IpProtocol: tcp
+          FromPort: 80  # HTTP port
+          ToPort: 80
+          CidrIp: 0.0.0.0/0  # Allow HTTP from any IP
+
+  VirtualcoffeeElasticIP:
+    Type: AWS::EC2::EIP
+
+Outputs:
+  InstanceId:
+    Description: The ID of the EC2 instance
+    Value: !Ref VirtualcoffeeEC2Instance
+  PublicIP:
+    Description: The public IP address of the EC2 instance
+    Value: !GetAtt VirtualcoffeeEC2Instance.PublicIp
