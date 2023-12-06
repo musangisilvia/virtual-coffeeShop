@@ -2,11 +2,11 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Create an EC2 instance with a Linux-based OS, SSH access, and a web server.
 
 Resources:
-  MyEC2Instance:
+  VirtualcoffeeEC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-xxxxxxxxxxxxxxxxx  
-      InstanceType: t2.micro
+      ImageId: ami-0fc5d935ebf8bc3bc 
+      InstanceType: t3.micro
       KeyName: virtualcoffee-key 
       UserData:
         Fn::Base64: |
@@ -18,9 +18,9 @@ Resources:
             - systemctl enable nginx
 
       SecurityGroups:
-        - Ref: Virtualcoffee-SecurityGroup
+        - Ref: VirtualcoffeeSecurityGroup
 
-  Virtualcoffee-SecurityGroup:
+  VirtualcoffeeSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow SSH and HTTP traffic
