@@ -5,7 +5,7 @@ Resources:
   VirtualcoffeeEC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-0fc5d935ebf8bc3bc 
+      ImageId: ami-0fe8bec493a81c7da 
       InstanceType: t3.micro
       KeyName: virtualcoffee-key 
       UserData:
