@@ -14,10 +14,13 @@ pipeline {
 
                     // Create and activate the virtual environment
                     sh "python3 -m venv ${VENV_NAME}"
-                    sh "source ${VENV_NAME}/bin/activate && pip install -r requirements.txt"
+                    
+                    // Activate the virtual environment and install dependencies
+                    withEnv(["PATH+VENV=${env.WORKSPACE}/${VENV_NAME}/bin"]) {
+                        sh "pip install -r requirements.txt"
+                    }
 
-                    // Assuming your Flask app entry point is app.py
-                    sh "source ${VENV_NAME}/bin/activate && python app.py &"
+                    sh "nohup ${VENV_NAME}/bin/python app.py > /dev/null 2>&1 &"
                 }
             }
         }
