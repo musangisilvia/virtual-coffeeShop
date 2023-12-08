@@ -3,10 +3,11 @@ pipeline {
 
     environment {
         VENV_NAME = 'virtual-coffee-shop'
+        CONFIG_FILE = 'config.py'
     }
 
     stages {
-        stage('Checkout and Deploy Flask App') {
+        stage('Checkout and Build Flask App') {
             steps {
                 script {
                     // Clone the repository
@@ -19,7 +20,17 @@ pipeline {
                     withEnv(["PATH+VENV=${env.WORKSPACE}/${VENV_NAME}/bin"]) {
                         sh "pip install -r requirements.txt"
                     }
+                }
+            }
+        }
 
+        stage('Deploy Flask App') {
+            steps {
+                script {
+                    // Copy config.py to the Flask app's working directory
+                    sh "cp ~/${CONFIG_FILE} ${env.WORKSPACE}/${VENV_NAME}/bin/"
+
+                    // Start the Flask app in the background
                     sh "nohup ${VENV_NAME}/bin/python app.py > /dev/null 2>&1 &"
                 }
             }
