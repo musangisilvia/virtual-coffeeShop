@@ -76,11 +76,11 @@ Schema is defined in the schema.sql file.
     ```
 
 - As a containerized application
-> At the root directory , there is a Dockerfile. Run the command below in the root directory (where app.py, Dockerfile and requirements.txt are)
+* At the root directory , there is a Dockerfile. Run the command below in the root directory (where app.py, Dockerfile and requirements.txt are)
     ```
         docker build -t virtual-coffeeshop .
     ```
-> Once image has been built successfully, you can start a container interactively or detached using either of the commands below respectively.
+* Once image has been built successfully, you can start a container interactively or detached using either of the commands below respectively.
     ```
         docker run --name virtual-coffee -p 5000:5000 virtual-coffeeshop
     ```
@@ -89,7 +89,7 @@ Schema is defined in the schema.sql file.
         docker run -d --name virtual-coffee -p 5000:5000 virtual-coffeeshop
     ```
 
-   The application will be accessible at `http://127.0.0.1:5000/` in your web browser.
+ *  The application will be accessible at `http://127.0.0.1:5000/` in your web browser.
 
 
 
