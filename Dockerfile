@@ -6,6 +6,7 @@ WORKDIR /vcs
 
 # Copy the current directory contents into the container at /vcs
 COPY . .
+COPY config.py .
 
 # Create and activate a virtual environment
 # RUN python -m venv venv
